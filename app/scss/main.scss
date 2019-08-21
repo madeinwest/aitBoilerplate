@@ -1,0 +1,392 @@
+@import "vars";
+@import "fonts";
+@import "libs";
+
+// sdasdasdassdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
+::placeholder {
+	color: #666;
+}
+
+::selection {
+	background-color: $accent;
+	color: #fff;
+}
+html {
+  scroll-behavior: smooth;
+	font-size: 62.5%; // 10px/16px = 62.5% => 1rem=10px
+	line-height: 1.65;
+	box-sizing:border-box;
+}
+body {
+	min-width: 320px;
+	position: relative;
+	font-family: $default-font;
+	overflow-x: hidden;
+	color: $text;
+	input, textarea {
+		border: 1px solid #c4c8d0;
+		border-bottom-width: 3px;
+		outline: none;
+		transition: .4s linear all;
+		&:focus:required:invalid {
+			border-bottom-color: red;
+		}
+		&:required:valid {
+			border-bottom-color: green;
+		}
+	}
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: 100%;
+	object-fit: cover;
+	&.img-width {
+		width: 100%;
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+i{
+	font-family: "Font Awesome 5 Free";
+}
+.abs{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #000;
+	opacity: 0.65;
+	z-index: 1;
+	top:0;
+	left: 0;
+}
+section,
+header,
+footer{
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	background-attachment: fixed;
+}
+
+textarea{
+	resize: none;
+}
+ul{
+	list-style: none;
+}
+.load__none {
+  display: none;
+  color:#fff;
+}
+
+.load__animation{
+  border: 5px solid rgba($color: $accent, $alpha: .3);
+  border-top-color: $accent;
+  // border-top-style: groove;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: turn 1.5s linear infinite;
+  -o-animation: turn 1.5s linear infinite;
+  animation: turn 1.5s linear infinite;
+}
+
+.load {
+  position: fixed;
+  background: #eaeaea;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.load__container {
+  position: relative;
+}
+
+@keyframes turn {
+  from {transform: rotate(0deg)}
+  to {transform: rotate(360deg)}
+} 
+
+.load__title {
+  color: #fff;
+  font-size: 2rem;
+}
+
+
+@keyframes loadPage {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.my-btn{
+	padding: 12px 25px 10px;
+	font-weight: 500;
+	color:#fff;
+	border-radius: 5px;
+	background-image: linear-gradient(to right, #02599c 0%, #4da8cf 100%);
+	text-align: center;
+	display: inline-block;
+	transition: .4s linear all;
+	border:1px solid transparent;
+	i{
+		margin-left: 15px;
+		color:inherit;
+	}
+	&:hover{
+		transform: scale(1.05);
+		border-color: inherit;
+		cursor: pointer!important;
+		color:#fff;
+		text-decoration: none;
+	}
+	&.tr{
+		background-image: none;
+		border: 1px solid $accent;
+		background-color: transparent;
+		color:$accent;
+	}
+	&.gr{
+		background-image: none;
+		border: 1px solid #979797;
+		background-color: transparent;
+		color:#979797;
+	}
+}
+
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+	position: absolute;
+	left: -9999px;
+}
+
+[type="checkbox"]:not(:checked)+label,
+[type="checkbox"]:checked+label {
+	position: relative;
+	padding-left: 32px;
+	cursor: pointer;
+	font-weight: 400;
+	margin-bottom: 4px;
+	display: inline-block;
+	font-size: 13px;
+	a{
+		color:$accent;
+		text-decoration: underline;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked)+label:before,
+[type="checkbox"]:checked+label:before {
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked)+label:after,
+[type="checkbox"]:checked+label:after {
+	content: '\f00c';
+	font-weight: bold;
+	font-size: 24px;
+	font-family: "Font Awesome 5 Free";
+	position: absolute;
+	top: -10px;
+	left: 0px;
+	font-size: 30px;
+	line-height: 1.2;
+	color: $accent;
+	transition: all .2s;
+}
+
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked)+label:after {
+	opacity: 0;
+	transform: scale(0);
+}
+
+[type="checkbox"]:checked+label:after {
+	opacity: 1;
+	transform: scale(1);
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	background-image: none;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+	display: none;
+}
+
+/* Custom Select */
+.select {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	border-radius: .25em;
+}
+
+select {
+	flex: 1;
+	padding: 0 .5em;
+	color: #32084a;
+	cursor: pointer;
+}
+
+/* Arrow */
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 12px 1em;
+	height: 38px;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+}
+
+/* Transition */
+.select:hover::after {
+	color: $accent;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+		color: #666;
+		font-weight: 400;
+		margin-right: 25px;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    // border-radius: 100%;
+		background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+		content: '\f00c';
+		position: absolute;
+		font-weight: bold;
+		font-size: 24px;
+		font-family: "Font Awesome 5 Free";
+		top: -10px;
+		left: 0px;
+		font-size: 30px;
+		line-height: 1.2;
+		color: $accent;
+		transition: all .2s;
+    // border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.bullet {
+	padding-left: 15px;
+	li{
+		display: flex;
+	}
+	li::before {
+		content: "\f00c";
+		font-family: "Font Awesome 5 Free";
+		color: $accent;
+		font-weight: bold;
+		display: inline-block;
+		width: 1em;
+		height: 100%;
+		margin-right: 15px;
+		margin-left: -1em;
+	}
+
+}
+
+.contAl{
+	height:55px;
+}
+.alert{
+    display: none;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	p {
+		 max-width:100%;
+	}
+	section{
+	 background-attachment: inherit;
+	}
+}
+// --START--
+
+@import "media"; // Always at the end
