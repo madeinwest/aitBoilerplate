@@ -50,6 +50,7 @@ gulp.task('scripts', function() {
 		'app/libs/bootstrap/bootstrap.min.js',
 		'app/libs/lazy/jquery.lazy.min.js',
 		'app/libs/lazy/jquery.lazy.plugins.min.js',
+		'app/libs/lazy/recliner.min.js',
 		'app/libs/wow/wow.min.js',
 		'app/libs/fancybox/jquery.fancybox.min.js',
 		// 'app/libs/slick/slick.min.js',

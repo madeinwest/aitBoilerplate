@@ -6,7 +6,12 @@ jQuery(function() {
 		setTimeout(function(){new WOW().init();}, 500);
 
 	jQuery('a[href="' + this.location.href + '"]').addClass('active');
-
+	
+	jQuery(".lazy-img").recliner({
+		attrib: "data-src", 
+		throttle: 100,      
+		threshold:300,
+});
 	jQuery('.lazy').Lazy({
 			visibleOnly: true,
 			effect: 'fadeIn',
