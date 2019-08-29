@@ -1,48 +1,57 @@
 jQuery(function() {
+	if (jQuery('.wow').hasClass('animated')) {
+		jQuery(this).removeClass('animated');
+		jQuery(this).removeAttr('style');
+		new WOW().init();
+}
 	jQuery(window).on('load', function() {
 		jQuery('#loading').fadeOut();
-		jQuery('#Load').delay(500).fadeOut('slow');
-		jQuery('body').delay(500).css({'overflow':'visible'});
-		setTimeout(function(){new WOW().init();}, 500);
-
-	jQuery('a[href="' + this.location.href + '"]').addClass('active');
-	
-	jQuery(".lazy-img").recliner({
-		attrib: "data-src", 
-		throttle: 100,      
-		threshold:300,
-});
+		jQuery('#Load').delay(1000).fadeOut('slow');
+		jQuery('body').delay(1000).css({'overflow':'visible'});
+		setTimeout(function(){new WOW().init();}, 750);
+		jQuery(".lazy-img").recliner({
+			attrib: "data-src", 
+			throttle: 100,      
+			threshold:300,
+	});
 	jQuery('.lazy').Lazy({
 			visibleOnly: true,
 			effect: 'fadeIn',
 			threshold:400,
 		});
-		jQuery(function() {
-			jQuery("iframe[data-src]").Lazy();
+
 	});
+	jQuery('img.svg').each(function(){
+    var $img = jQuery(this);
+    var imgID = $img.attr('id');
+    var imgClass = $img.attr('class');
+    var imgURL = $img.attr('src');
 
+    jQuery.get(imgURL, function(data) {
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find('svg');
 
-	if( jQuery('.sn_form_submit') !== null){
-		jQuery('.sn_form_submit').on( "click", validation );
-	
-		function validation(e) {
-			if (jQuery('#test1:checked').length === 1){
-			if(jQuery('input[type=radio]')){
+        // Add replaced image's ID to the new SVG
+        if(typeof imgID !== 'undefined') {
+            $svg = $svg.attr('id', imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if(typeof imgClass !== 'undefined') {
+            $svg = $svg.attr('class', imgClass+' replaced-svg');
+        }
 
-			jQuery('#request-form input[type=radio]').each(function(){
-					jQuery(this).removeClass("sn_form_information");
-			});
-			jQuery('#request-form input[type=radio]:checked').each(function(){
-					jQuery(this).addClass("sn_form_information");
-			});
-			}
-				sn_form_submit('request-form','config_email_1');
-				return
-				}
-			else{
-				jQuery('.alert').show()
-				return
-			}
-		}
-	}
+        // Remove any invalid XML tags as per http://validator.w3.org
+        $svg = $svg.removeAttr('xmlns:a');
+
+        // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+        if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+        }
+
+        // Replace image with new SVG
+        $img.replaceWith($svg);
+
+    }, 'xml');
+
+});
 });
