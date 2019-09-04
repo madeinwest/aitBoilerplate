@@ -9,6 +9,9 @@ jQuery(function() {
 		jQuery('#Load').delay(1000).fadeOut('slow');
 		jQuery('body').delay(1000).css({'overflow':'visible'});
 		setTimeout(function(){new WOW().init();}, 750);
+
+	jQuery('a[href="' + this.location.href + '"]').addClass('active');
+
 		jQuery(".lazy-img").recliner({
 			attrib: "data-src", 
 			throttle: 100,      
@@ -54,4 +57,23 @@ jQuery(function() {
     }, 'xml');
 
 });
+
+document.querySelector('#request-form1 #page').value = window.location.href;
+
+if(document.querySelector('#request-form #pageM')){
+	document.querySelector('#request-form #pageM').value =  window.location.href;
+}
+
+if(document.querySelector('.customer-info')){
+	let targ = document.querySelector('.customer-info'),
+			page = document.querySelector('#request-form1 #page'),
+			item = document.querySelector('#request-form1 #item');
+
+	targ.addEventListener('click', function(e) {
+		if(e.target.tagName == 'A'){
+			item.value = e.target.dataset.val;
+			page.value = window.location.href;
+		}
+	});
+}
 });
